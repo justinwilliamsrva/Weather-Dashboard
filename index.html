@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather-Dashboard</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Weather-Dashboard</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="container-fluid">
+            <div id="head" class="row d-flex justify-content-center">
+                <h1 class="text-center">Weather Dashboard</h1>
+            </div>
+        </div>
 
-<div id="Heading"></div>
-<div id="aside"></div>
+        <!--Content  -->
+        <div class="container-fluid">
+            <div id="row" class="row">
+                <!-- Aside -->
+                <div id="aside" class="col-3">
+                    <p class="mb-0">Search for a city:</p>
+                    <form class="" action="/action_page.php">
+                        <input type="text" placeholder="Richmond,VA" name="search" />
+                        <button class="bg-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                    <ul id="cities" class="p-0 mt-4">
+                        <li>Austin</li>
+                        <li>Chicago</li>
+                        <li>New York</li>
+                        <li>Wyoming</li>
+                    </ul>
+                </div>
+                <!--Main  -->
+                <div id="main" class="col-9">
+                    <!-- City Info -->
+                    <div id="cityInfo" class="row col-12">
+                        <div id="weatherInfo" class="container">
+                            <h2 class="m-1">
+                                <span id="currentCity">Richmond</span><span id="currentDate"></span>
+                            </h2>
+                            <p class="m-1">Temperature: <span id="temp"></span></p>
+                            <p class="m-1">Humidity: <span id="humid"></span></p>
+                            <p class="m-1">Wind Speed: <span id="wind"></span></p>
+                            <p class="m-1">UV Index: <span id="uvIndex"></span></p>
+                        </div>
+                    </div>
+                    <!-- 5 Day Forecast -->
+                    <div id="fiveDay" class="container-fluid col-12">
+                        <h5 class="text-center">5-Day Forecast</h5>
 
-
-
-</body>
+                        <div class="row d-flex justify-content-around">
+                            <div
+                                id="day1"
+                                class="rounded Forecast bg-primary border border-dark p-2"
+                            >
+                                <p class="mb-2">Date</p>
+                                <p class="mb-2">Sunny</p>
+                                <p class="mb-2">Temperate</p>
+                                <p class="mb-2">humididy</p>
+                            </div>
+                            <div id="day2" class="Forecast bg-primary border border-dark p-2"></div>
+                            <div id="day3" class="Forecast bg-primary border border-dark p-2"></div>
+                            <div id="day4" class="Forecast bg-primary border border-dark p-2"></div>
+                            <div id="day5" class="Forecast bg-primary border border-dark p-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

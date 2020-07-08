@@ -1,0 +1,43 @@
+#head {
+    color: white;
+    background-color: #343a40;
+}
+#aside {
+    /* border: 1px solid black; */
+    /* height: 200px; */
+}
+
+#aside {
+    background-color: #f8f9fa;
+}
+
+#weatherInfo {
+    margin: 10px 10px 0px 10px;
+    border: 1px solid black;
+    height: 175px;
+}
+#row {
+    height: 400px;
+}
+
+#cityInfo {
+    height: 200px;
+}
+#fiveDay {
+    height: 200px;
+}
+
+.Forecast {
+    height: 150px;
+    width: 15%;
+    color: white;
+    /* border-radius: 25px; */
+}
+
+ul li {
+    list-style-type: none;
+    border: 1px solid grey;
+    padding: 5px;
+    margin: 5px 5px 5px 0px;
+    background-color: white;
+}
