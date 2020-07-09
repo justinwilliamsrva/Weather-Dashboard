@@ -9,18 +9,20 @@ $(document).ready(function () {
 
     // pull current location
     $("#getWeather,#past-cities").on("click", function () {
+        alert("hi");
         if (test) console.log("on click");
         // get location from user input box
-        let e = $(event.target)[0];
+        // let e = $(event.target)[0];
+        // console.log(event);
         let location = "";
 
-        if (e.id === "getWeather" || e.id === "getWeatherId") {
-            if (test) console.log("getWeather");
-            location = $("#city-search").val().trim().toUpperCase();
-        } else if (e.className === "cityList") {
-            if (test) console.log("cityList");
-            location = e.innerText;
-        }
+        // if (e.id === "getWeather" || e.id === "getWeatherId") {
+        //     if (test) console.log("getWeather");
+            location = $("#citySearch").val().trim().toUpperCase();
+        // } else if (e.className === "cityList") {
+        //     if (test) console.log("cityList");
+        //     location = e.innerText;
+        // }
 
         // should make this generic to use this on the area clicked
         // let location = $(this).val().trim().toUpperCase();
