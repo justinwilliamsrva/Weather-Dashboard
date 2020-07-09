@@ -191,21 +191,6 @@ $(document).ready(function () {
         });
     }
 
-    function drawCurWeather(cur) {
-        // function to draw  weather all days
-        // need logic to pick variables
-        if (test) {
-            console.log("drawCurWeather - cur:", cur);
-        }
-
-        $("#forecast").empty();
-        $("#cityName").text(cur.city + " (" + cur.date + ")");
-        $("#curWeathIcn").attr("src", cur.icon);
-        $("#curTemp").text("Temp: " + cur.temp + " F");
-        $("#curHum").text("Humidity: " + cur.humidity + "%");
-        $("#curWind").text("Windspeed: " + cur.wind + " MPH");
-    }
-
     function drawForecast(cur) {
         if (test) {
             console.log("drawForecast - cur:", cur);
@@ -252,6 +237,21 @@ $(document).ready(function () {
         }
     }
 
+    function drawCurWeather(cur) {
+        // function to draw  weather all days
+        // need logic to pick variables
+        if (test) {
+            console.log("drawCurWeather - cur:", cur);
+        }
+
+        $("#forecast").empty();
+        $("#currentCity").text(cur.city + " (" + cur.date + ")");
+        $("#curWeathIcn").attr("src", cur.icon);
+        $("#temp").text(cur.temp + " F");
+        $("#humid").text(cur.humidity + "%");
+        $("#wind").text(cur.wind + " MPH");
+    }
+
     function getUvIndex(uvLoc) {
         if (test) {
             console.log("getUvIndex loc:", uvLoc);
@@ -286,12 +286,9 @@ $(document).ready(function () {
                 bkcolor = "red";
             }
 
-            let title = "<span>UV Index: </span>";
-            let color =
-                title +
-                `<span style="background-color: ${bkcolor}; padding: 0 7px 0 7px;">${response.value}</span>`;
+            let color = `<span style="background-color: ${bkcolor}; padding: 0 7px 0 7px;">${response.value}</span>`;
 
-            $("#curUv").html(color);
+            $("#uvIndex").html(color);
         });
     }
 

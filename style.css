@@ -41,3 +41,12 @@ ul li {
     margin: 5px 5px 5px 0px;
     background-color: white;
 }
+
+#currentCity,
+#curWeathIcn {
+    float: left;
+    margin: 0px 20px 0px 0px;
+}
+#curWeathIcn {
+    margin-right: 300px;
+}
