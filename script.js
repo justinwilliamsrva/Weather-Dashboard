@@ -136,7 +136,7 @@ $(document).ready(function () {
                 icon: `http://openweathermap.org/img/w/${response.weather[0].icon}.png`,
                 desc: response.weather[0].description,
             };
-
+            console.log(weatherObj);
             // calls function to draw results to page
             drawCurWeather(weatherObj);
             getUvIndex(response);
@@ -161,9 +161,10 @@ $(document).ready(function () {
         let weatherObj = {};
 
         // set queryURL based on type of query
-        requestType = "forecast/daily";
-        query = `?${city}&cnt=6&units=imperial&appid=${apiKey}`;
+        requestType = "forecast";
+        query = `?${city}&units=imperial&appid=${apiKey}`;
         queryURL = `${url}${requestType}${query}`;
+        console.log(queryURL);
 
         // Create an AJAX call to retrieve data Log the data in console
         $.ajax({
@@ -172,29 +173,27 @@ $(document).ready(function () {
         }).then(function (response) {
             if (test) console.log("getForecast response", response);
 
-            for (let i = 1; i < response.list.length; i++) {
+            for (let i = 7; i < response.list.length; i = i + 8) {
                 let cur = response.list[i];
+
                 // TODO check for errors/no data
                 weatherObj = {
                     weather: cur.weather[0].description,
                     icon: `http://openweathermap.org/img/w/${cur.weather[0].icon}.png`,
-                    minTemp: cur.temp.min,
-                    maxTemp: cur.temp.max,
-                    humidity: cur.humidity,
+                    minTemp: cur.main.temp_min,
+                    maxTemp: cur.main.temp_max,
+                    humidity: cur.main.humidity,
                     date: convertDate(cur.dt)[1],
                 };
 
                 weatherArr.push(weatherObj);
             }
-
             drawForecast(weatherArr);
         });
     }
 
     function drawForecast(cur) {
-        if (test) {
-            console.log("drawForecast - cur:", cur);
-        }
+        console.log("drawForecast - cur:", cur);
 
         for (let i = 0; i < cur.length; i++) {
             let $colmx1 = $('<div class="col mx-1">');
@@ -275,6 +274,7 @@ $(document).ready(function () {
             // if (test) response.value = 7.1234567;
 
             let uv = parseFloat(response.value);
+            console.log(response);
 
             if (uv < 3) {
                 bkcolor = "green";
