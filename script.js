@@ -1,33 +1,26 @@
 $(document).ready(function () {
     let test = true;
-    // use school key inorder to get forecast data
+
     const apiKey = "a076bb4dbcd9082faae450a5cea191f6";
     let url = "https://api.openweathermap.org/data/2.5/";
     let requestType = "";
     let query = "";
-    //
 
-    // pull current location
     $("#getWeather,#past-cities").on("click", function () {
         if (test) console.log("on click");
-        // get location from user input box
+
         let e = $(event.target)[0];
         console.log(event);
         let location = "";
         console.log(event);
         if (e.id === "getWeather" || e.id === "getWeatherId") {
             if (test) console.log("getWeather");
-        location = $("#citySearch").val().trim().toUpperCase();
+            location = $("#citySearch").val().trim().toUpperCase();
         } else if (e.className === "cityList") {
             if (test) console.log("cityList");
             location = e.innerText;
         }
 
-        // should make this generic to use this on the area clicked
-        // let location = $(this).val().trim().toUpperCase();
-        if (test) {
-            console.log("location:" + location);
-        }
         if (location == "") return;
 
         updateCityStore(location);
@@ -145,8 +138,7 @@ $(document).ready(function () {
     }
 
     function getForecastWeather(loc) {
-        // function to get 5 day forecast data
-        // returns array of daily weather objects
+
         if (test) {
             console.log("getForecastWeather - loc:", loc);
         }
@@ -157,17 +149,16 @@ $(document).ready(function () {
             city = `q=${loc}`;
         }
 
-        // array to hold all the days of results
         let weatherArr = [];
         let weatherObj = {};
 
-        // set queryURL based on type of query
+
         requestType = "forecast";
         query = `?${city}&units=imperial&appid=${apiKey}`;
         queryURL = `${url}${requestType}${query}`;
         console.log(queryURL);
 
-        // Create an AJAX call to retrieve data Log the data in console
+
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -177,7 +168,7 @@ $(document).ready(function () {
             for (let i = 7; i < response.list.length; i = i + 8) {
                 let cur = response.list[i];
 
-                // TODO check for errors/no data
+
                 weatherObj = {
                     icon: `http://openweathermap.org/img/w/${cur.weather[0].icon}.png`,
                     minTemp: cur.main.temp_min,
@@ -207,9 +198,6 @@ $(document).ready(function () {
             let $iconI = $("<img>");
             $iconI.attr("src", cur[i].icon);
 
-            // let $weathLi = $("<li>");
-            // $weathLi.text(cur[i].weather);
-
             let $tempMinLi = $("<li>");
             $tempMinLi.text("Min Temp: " + cur[i].minTemp + " F");
 
@@ -219,11 +207,11 @@ $(document).ready(function () {
             let $humLi = $("<li>");
             $humLi.text("Humidity: " + cur[i].humidity + "%");
 
-            // assemble element
+
             $iconLi.append($iconI);
 
             $ul.append($iconLi);
-            // $ul.append($weathLi);
+
             $ul.append($tempMinLi);
             $ul.append($tempMaxLi);
             $ul.append($humLi);
@@ -255,23 +243,23 @@ $(document).ready(function () {
         if (test) {
             console.log("getUvIndex loc:", uvLoc);
         }
-        // function to color uv index
+
 
         city = `lat=${parseInt(uvLoc.coord.lat)}&lon=${parseInt(uvLoc.coord.lon)}`;
 
-        // set queryURL based on type of query
+
         requestType = "uvi";
         query = `?${city}&appid=${apiKey}`;
         queryURL = `${url}${requestType}${query}`;
 
-        // Create an AJAX call to retrieve data Log the data in console
+
         $.ajax({
             url: queryURL,
             method: "GET",
         }).then(function (response) {
             let bkcolor = "violet";
 
-            // if (test) response.value = 7.1234567;
+  
 
             let uv = parseFloat(response.value);
             console.log(response);
@@ -297,17 +285,15 @@ $(document).ready(function () {
         cityList.push(city);
         cityList.sort();
 
-        // removes dulicate cities
         for (let i = 1; i < cityList.length; i++) {
             if (cityList[i] === cityList[i - 1]) cityList.splice(i, 1);
         }
 
-        //stores in local storage
         localStorage.setItem("cityList", JSON.stringify(cityList));
     }
 
     function drawHistory() {
-        // function to pull city history from local memory
+
         if (test) console.log("getHistory");
         let cityList = JSON.parse(localStorage.getItem("cityList")) || [];
 

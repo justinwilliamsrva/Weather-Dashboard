@@ -45,10 +45,10 @@ ul li {
 #currentCity,
 #curWeathIcn {
     float: left;
-    margin: 0px 20px 0px 0px;
+    /* margin: 0px 20px 0px 0px; */
 }
 #curWeathIcn {
-    margin-right: 375px;
+    margin-right: 300px;
 }
 
 div {
