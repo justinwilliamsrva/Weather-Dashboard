@@ -9,20 +9,19 @@ $(document).ready(function () {
 
     // pull current location
     $("#getWeather,#past-cities").on("click", function () {
-        alert("hi");
         if (test) console.log("on click");
         // get location from user input box
-        // let e = $(event.target)[0];
-        // console.log(event);
+        let e = $(event.target)[0];
+        console.log(event);
         let location = "";
-
-        // if (e.id === "getWeather" || e.id === "getWeatherId") {
-        //     if (test) console.log("getWeather");
-            location = $("#citySearch").val().trim().toUpperCase();
-        // } else if (e.className === "cityList") {
-        //     if (test) console.log("cityList");
-        //     location = e.innerText;
-        // }
+        console.log(event);
+        if (e.id === "getWeather" || e.id === "getWeatherId") {
+            if (test) console.log("getWeather");
+        location = $("#citySearch").val().trim().toUpperCase();
+        } else if (e.className === "cityList") {
+            if (test) console.log("cityList");
+            location = e.innerText;
+        }
 
         // should make this generic to use this on the area clicked
         // let location = $(this).val().trim().toUpperCase();
@@ -180,7 +179,6 @@ $(document).ready(function () {
 
                 // TODO check for errors/no data
                 weatherObj = {
-                    weather: cur.weather[0].description,
                     icon: `http://openweathermap.org/img/w/${cur.weather[0].icon}.png`,
                     minTemp: cur.main.temp_min,
                     maxTemp: cur.main.temp_max,
@@ -209,8 +207,8 @@ $(document).ready(function () {
             let $iconI = $("<img>");
             $iconI.attr("src", cur[i].icon);
 
-            let $weathLi = $("<li>");
-            $weathLi.text(cur[i].weather);
+            // let $weathLi = $("<li>");
+            // $weathLi.text(cur[i].weather);
 
             let $tempMinLi = $("<li>");
             $tempMinLi.text("Min Temp: " + cur[i].minTemp + " F");
@@ -225,7 +223,7 @@ $(document).ready(function () {
             $iconLi.append($iconI);
 
             $ul.append($iconLi);
-            $ul.append($weathLi);
+            // $ul.append($weathLi);
             $ul.append($tempMinLi);
             $ul.append($tempMaxLi);
             $ul.append($humLi);
