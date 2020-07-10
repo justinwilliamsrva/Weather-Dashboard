@@ -1,3 +1,10 @@
+## Weather Dashboard
+```
+Using the the openWeather API this dashboard gives the current condictions as well of a five day forecast of desired cities. 
+```
+
+
+
 ## User Story
 
 ```
@@ -23,5 +30,7 @@ THEN I am again presented with current and future conditions for that city
 WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
 ```
+
+![image](https://user-images.githubusercontent.com/63308516/87102894-67d5de00-c221-11ea-9fb2-8e9d9303c7ba.png)
 
 
